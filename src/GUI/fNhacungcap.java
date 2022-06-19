@@ -75,7 +75,6 @@ public class fNhacungcap extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
@@ -138,7 +137,6 @@ public class fNhacungcap extends javax.swing.JFrame {
         jButtonLon = new javax.swing.JButton();
         jButtonLonMax = new javax.swing.JButton();
         jLabelSoTrang = new javax.swing.JLabel();
-        jComboBoxNhanVien = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Nhà cung cấp");
@@ -148,11 +146,7 @@ public class fNhacungcap extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Phần mềm quản lý kho");
-
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("siêu thị S.O.S");
+        jLabel1.setText("Phần mềm quản lý kho nhà hàng 5 sao");
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -457,41 +451,22 @@ public class fNhacungcap extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jComboBoxNhanVien.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBoxNhanVien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxNhanVienActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(157, 157, 157)
-                        .addComponent(jLabel2)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBoxNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jComboBoxNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addGap(55, 55, 55)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -540,20 +515,6 @@ public class fNhacungcap extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jTableNguonCungCapMouseClicked
-
-    private void jComboBoxNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxNhanVienActionPerformed
-        String valueIn = String.valueOf(jComboBoxNhanVien.getSelectedItem());
-        if ("Thoát".equals(valueIn)) {
-            JFrame dn = new fDangNhap();
-            dn.setVisible(true);
-            dispose();
-        }
-        if ("Thông tin".equals(valueIn)) {
-            JFrame nv = new fViewNhanVien(id_nv, id_nv);
-            nv.setVisible(true);
-        }
-        jComboBoxNhanVien.setSelectedIndex(0);
-    }//GEN-LAST:event_jComboBoxNhanVienActionPerformed
 
     private void jButtonExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcelActionPerformed
         // TODO add your handling code here:
@@ -700,19 +661,7 @@ public class fNhacungcap extends javax.swing.JFrame {
         ThongBao.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonHuyActionPerformed
-    //
-    // 
-    public void NhanVienDangNhap() {
-        if (id_nv != 0) {
-            TaiKhoan tk = DAO.daoTaiKhoan.getInstance().getTaiKhoan(id_nv);
-            NhanVien nv = DAO.daoTaiKhoan.getInstance().getNhanVien(tk.id_nv);
-            jComboBoxNhanVien.addItem(nv.ten_nv);
-            jComboBoxNhanVien.addItem("Thông tin");
-            jComboBoxNhanVien.addItem("Thoát");
-        } else {
-            jComboBoxNhanVien.addItem("Chưa đăng nhập");
-        }
-    }
+
 
     /**
      * @param args the command line arguments
@@ -768,7 +717,6 @@ public class fNhacungcap extends javax.swing.JFrame {
         jLabelTrang.setText("1");
         ArrayList<NguonCungCap> table = DAO.daoNguonCungCap.getInstance().get20NguonCungCap(DanhSachXuatKho, 1);
         listDanhSachNguonCungCap(table);
-        NhanVienDangNhap();
     }
 
     public void FindList() {
@@ -817,9 +765,7 @@ public class fNhacungcap extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSua;
     private javax.swing.JButton jButtonThem;
     private javax.swing.JButton jButtonTimKiem;
-    private javax.swing.JComboBox<String> jComboBoxNhanVien;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelKetQua;
     private javax.swing.JLabel jLabelSoTrang;

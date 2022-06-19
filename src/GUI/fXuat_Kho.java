@@ -67,7 +67,6 @@ public class fXuat_Kho extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableXuatKho = new javax.swing.JTable();
@@ -78,7 +77,6 @@ public class fXuat_Kho extends javax.swing.JFrame {
         jButtonLamMoi = new javax.swing.JButton();
         jLabelKetQua = new javax.swing.JLabel();
         jButtonSua = new javax.swing.JButton();
-        jComboBoxNhanVien = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jButtonNhoMax = new javax.swing.JButton();
         jButtonNho = new javax.swing.JButton();
@@ -97,11 +95,7 @@ public class fXuat_Kho extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Phần mềm quản lý kho");
-
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("siêu thị S.O.S");
+        jLabel1.setText("Phần mềm quản lý nhà hàng 5 sao");
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 153));
         jPanel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -260,13 +254,6 @@ public class fXuat_Kho extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jComboBoxNhanVien.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBoxNhanVien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxNhanVienActionPerformed(evt);
-            }
-        });
-
         jPanel3.setBackground(new java.awt.Color(0, 153, 153));
 
         jButtonNhoMax.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -349,28 +336,19 @@ public class fXuat_Kho extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBoxNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 329, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(329, 329, 329))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(194, 194, 194)
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jComboBoxNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addGap(56, 56, 56)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -433,20 +411,6 @@ public class fXuat_Kho extends javax.swing.JFrame {
         FindList();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonTimKiemActionPerformed
-
-    private void jComboBoxNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxNhanVienActionPerformed
-        String valueIn = String.valueOf(jComboBoxNhanVien.getSelectedItem());
-        if ("Thoát".equals(valueIn)) {
-            JFrame dn = new fDangNhap();
-            dn.setVisible(true);
-            dispose();
-        }
-        if ("Thông tin".equals(valueIn)) {
-            JFrame nv = new fViewNhanVien(id_nv, id_nv);
-            nv.setVisible(true);
-        }
-        jComboBoxNhanVien.setSelectedIndex(0);
-    }//GEN-LAST:event_jComboBoxNhanVienActionPerformed
 
     private void jButtonLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLamMoiActionPerformed
         build();
@@ -522,11 +486,7 @@ public class fXuat_Kho extends javax.swing.JFrame {
         if (id_nv != 0) {
             TaiKhoan tk = DAO.daoTaiKhoan.getInstance().getTaiKhoan(id_nv);
             NhanVien nv = DAO.daoTaiKhoan.getInstance().getNhanVien(tk.id_nv);
-            jComboBoxNhanVien.addItem(nv.ten_nv);
-            jComboBoxNhanVien.addItem("Thông tin");
-            jComboBoxNhanVien.addItem("Thoát");
         } else {
-            jComboBoxNhanVien.addItem("Chưa đăng nhập");
         }
     }
 
@@ -629,10 +589,8 @@ public class fXuat_Kho extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSua;
     private javax.swing.JButton jButtonTaoMoi;
     private javax.swing.JButton jButtonTimKiem;
-    private javax.swing.JComboBox<String> jComboBoxNhanVien;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelKetQua;
     private javax.swing.JLabel jLabelSoTrang;
     private javax.swing.JLabel jLabelTrang;

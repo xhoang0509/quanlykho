@@ -49,25 +49,22 @@ public class fKiemKe extends javax.swing.JFrame {
 //        DuLieuMau = DanhSach;
 //=======
         DanhSach = busKiemKe.getInstance().DanhSachThongTinKhoHienTai();
-        DuLieuMau = DanhSach ; 
+        DuLieuMau = DanhSach;
 
         initComponents();
         setIcon();
         build();
     }
 
-
 //    public fKiemKe(int id_nv) {
 //        this.id_nv = id_nv;
 //        DanhSach = daoKho.getInstance().getListThongTinKhoHienTai();
 //        DuLieuMau = DanhSach;
 //    }
-
-    public fKiemKe(int id_nv)
-    {
-        this.id_nv=id_nv;
+    public fKiemKe(int id_nv) {
+        this.id_nv = id_nv;
         DanhSach = busKiemKe.getInstance().DanhSachThongTinKhoHienTai();
-        DuLieuMau = DanhSach ; 
+        DuLieuMau = DanhSach;
         initComponents();
         setIcon();
         build();
@@ -95,7 +92,6 @@ public class fKiemKe extends javax.swing.JFrame {
 //        NhanVienDangNhap();
 //
 //=======
-        NhanVienDangNhap();       
 
     }
 
@@ -105,18 +101,6 @@ public class fKiemKe extends javax.swing.JFrame {
         jComboBoxLoaiSP.addItem("Tất cả");
         for (int i = 0; i < arr.size(); i++) {
             jComboBoxLoaiSP.addItem(arr.get(i).ten_loai_sp);
-        }
-    }
-
-    public void NhanVienDangNhap() {
-        if (id_nv != 0) {
-            TaiKhoan tk = DAO.daoTaiKhoan.getInstance().getTaiKhoan(id_nv);
-            NhanVien nv = DAO.daoTaiKhoan.getInstance().getNhanVien(tk.id_nv);
-            jComboBoxNhanVien2.addItem(nv.ten_nv);
-            jComboBoxNhanVien2.addItem("Thông tin");
-            jComboBoxNhanVien2.addItem("Thoát");
-        } else {
-            jComboBoxNhanVien2.addItem("Chưa đăng nhập");
         }
     }
 
@@ -130,14 +114,13 @@ public class fKiemKe extends javax.swing.JFrame {
             PhieuKiemKeKho phieu = daoPhieuKiemKeKho.getInstance().getPhieuKiemKeKho(item.id_kho);
             //int _tongsp = item.so_luong_lo * item.sl_san_pham;
             if (phieu == null) {
-                model.addRow(new Object[]{item.id_kho, item.ten_sp, item.hsd, item.sl_san_pham, "", "","", "Đầy đủ"});
+                model.addRow(new Object[]{item.id_kho, item.ten_sp, item.hsd, item.sl_san_pham, "", "", "", "Đầy đủ"});
             }
-            if(phieu!=null && item.so_luong_lo==phieu.sl_hao_mon)
-            {
-                model.addRow(new Object[]{item.id_kho, item.ten_sp, item.hsd,item.sl_san_pham, phieu.sl_thuc_te , "",DateTimeNow.getIntance().FormatDateViewTable(phieu.thoi_gian), "Đầy đủ"});
+            if (phieu != null && item.so_luong_lo == phieu.sl_hao_mon) {
+                model.addRow(new Object[]{item.id_kho, item.ten_sp, item.hsd, item.sl_san_pham, phieu.sl_thuc_te, "", DateTimeNow.getIntance().FormatDateViewTable(phieu.thoi_gian), "Đầy đủ"});
             }
-            if(phieu!=null && item.so_luong_lo!=phieu.sl_hao_mon) {
-                model.addRow(new Object[]{item.id_kho, item.ten_sp, item.hsd, item.sl_san_pham ,phieu.sl_thuc_te, phieu.sl_hao_mon,DateTimeNow.getIntance().FormatDateViewTable(phieu.thoi_gian), "Hao hụt"});
+            if (phieu != null && item.so_luong_lo != phieu.sl_hao_mon) {
+                model.addRow(new Object[]{item.id_kho, item.ten_sp, item.hsd, item.sl_san_pham, phieu.sl_thuc_te, phieu.sl_hao_mon, DateTimeNow.getIntance().FormatDateViewTable(phieu.thoi_gian), "Hao hụt"});
             }
         });
     }
@@ -177,7 +160,6 @@ public class fKiemKe extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableKhoHienTai = new javax.swing.JTable();
@@ -207,7 +189,6 @@ public class fKiemKe extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jComboBoxLoaiSP = new javax.swing.JComboBox<>();
         jButtonTaiLai = new javax.swing.JButton();
-        jComboBoxNhanVien2 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Kiểm kê");
@@ -217,11 +198,7 @@ public class fKiemKe extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Phần mềm quản lý kho");
-
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("siêu thị S.O.S");
+        jLabel1.setText("Phần mềm quản lý kho khách sạn 5 sao");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -549,13 +526,6 @@ public class fKiemKe extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jComboBoxNhanVien2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBoxNhanVien2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxNhanVien2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -563,25 +533,15 @@ public class fKiemKe extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jComboBoxNhanVien2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(195, 195, 195)
-                .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jComboBoxNhanVien2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addGap(23, 23, 23)
+                .addComponent(jLabel1)
+                .addGap(72, 72, 72)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -636,20 +596,6 @@ public class fKiemKe extends javax.swing.JFrame {
         jLabelSoTrang.setText(SoTrang + "/" + SoTrang);
     }//GEN-LAST:event_jButtonLonMaxActionPerformed
 
-    private void jComboBoxNhanVien2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxNhanVien2ActionPerformed
-        String valueIn = String.valueOf(jComboBoxNhanVien2.getSelectedItem());
-        if ("Thoát".equals(valueIn)) {
-            JFrame dn = new fDangNhap();
-            dn.setVisible(true);
-            dispose();
-        }
-        if ("Thông tin".equals(valueIn)) {
-            JFrame nv = new fViewNhanVien(id_nv, id_nv);
-            nv.setVisible(true);
-        }
-        jComboBoxNhanVien2.setSelectedIndex(0);
-    }//GEN-LAST:event_jComboBoxNhanVien2ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         DanhSach = DuLieuMau;
         FindList();
@@ -660,64 +606,61 @@ public class fKiemKe extends javax.swing.JFrame {
         int sl_kho = 0;
         sl_kho = Integer.parseInt(jTextField_Lo_ton.getText());
         int sl_thuc_te = jSpinnerSLThucTe.getValue().hashCode();
-        
 
-            if ( sl_thuc_te == 0) { // hao mon
+        if (sl_thuc_te == 0) { // hao mon
+            JOptionPane.showMessageDialog(rootPane,
+                    "Số lượng thực tế không phù hợp.",
+                    "Thông báo",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+        if (sl_thuc_te <= sl_kho && sl_thuc_te > 0) { // hao mon
+            String thoi_gian = DateTimeNow.getIntance().Now;
+            int id_kho = Integer.parseInt(jTextField_id_kho.getText());
+            //daoKho.getInstance().updateSoLuongKhotheo_ID_KHO(sl_thuc_te, id_kho);
+            DanhSach = daoKho.getInstance().getListThongTinKhoHienTai();
+            DuLieuMau = DanhSach;
+
+            ArrayList<ThongTinKiemKe> arr = daoKiemKe.getInstance().getListThongTinKiemKe(id_kho);
+            if (arr.isEmpty() == true) {
+                daoPhieuKiemKeKho.getInstance().insertPhieuKiemKeKho(sl_kho - sl_thuc_te, sl_thuc_te, thoi_gian, id_kho, id_nv);
                 JOptionPane.showMessageDialog(rootPane,
-                        "Số lượng thực tế không phù hợp.",
+                        "Lưu ID Kho " + id_kho + " thành công.",
                         "Thông báo",
                         JOptionPane.INFORMATION_MESSAGE);
-            }
-            if(sl_thuc_te <= sl_kho && sl_thuc_te > 0) { // hao mon
-                String thoi_gian = DateTimeNow.getIntance().Now;
-                int id_kho = Integer.parseInt(jTextField_id_kho.getText());
-                //daoKho.getInstance().updateSoLuongKhotheo_ID_KHO(sl_thuc_te, id_kho);
-                DanhSach = daoKho.getInstance().getListThongTinKhoHienTai();
-                                    DuLieuMau = DanhSach;
 
-                ArrayList<ThongTinKiemKe> arr = daoKiemKe.getInstance().getListThongTinKiemKe(id_kho);
-                if(arr.isEmpty() == true){
-                    daoPhieuKiemKeKho.getInstance().insertPhieuKiemKeKho(sl_kho-sl_thuc_te,sl_thuc_te, thoi_gian, id_kho, id_nv);
+            } else {
+                int sl_thuc_te_truoc = arr.get(arr.size() - 1).sl_thuc_te;
+
+                if (sl_thuc_te > sl_thuc_te_truoc) {
+                    JOptionPane.showMessageDialog(rootPane,
+                            "Số lượng thực tế không phù hợp.",
+                            "Thông báo",
+                            JOptionPane.INFORMATION_MESSAGE);
+                }
+                if (sl_thuc_te < sl_thuc_te_truoc) {
+                    daoPhieuKiemKeKho.getInstance().insertPhieuKiemKeKho(sl_thuc_te_truoc - sl_thuc_te, sl_thuc_te, thoi_gian, id_kho, id_nv);
                     JOptionPane.showMessageDialog(rootPane,
                             "Lưu ID Kho " + id_kho + " thành công.",
                             "Thông báo",
-                            JOptionPane.INFORMATION_MESSAGE); 
-                     
-                }else{
-                    int sl_thuc_te_truoc = arr.get(arr.size()-1).sl_thuc_te;
-                    
-                    if(sl_thuc_te > sl_thuc_te_truoc){
-                        JOptionPane.showMessageDialog(rootPane,
-                        "Số lượng thực tế không phù hợp.",
-                        "Thông báo",
-                        JOptionPane.INFORMATION_MESSAGE);
-                    }
-                    if(sl_thuc_te < sl_thuc_te_truoc){
-                         daoPhieuKiemKeKho.getInstance().insertPhieuKiemKeKho(sl_thuc_te_truoc-sl_thuc_te,sl_thuc_te, thoi_gian, id_kho, id_nv);
-                         JOptionPane.showMessageDialog(rootPane,
-                            "Lưu ID Kho " + id_kho + " thành công.",
-                            "Thông báo",
-                            JOptionPane.INFORMATION_MESSAGE); 
-                    }
-
+                            JOptionPane.INFORMATION_MESSAGE);
                 }
-                ArrayList<ThongTinKhoHienTai> table = DAO.daoKho.getInstance().get20KhoHienTai(DanhSach, 1);
-                    listDanhSachKhoHienTai(table);
-                
-                
-                     
+
             }
+            ArrayList<ThongTinKhoHienTai> table = DAO.daoKho.getInstance().get20KhoHienTai(DanhSach, 1);
+            listDanhSachKhoHienTai(table);
+
+        }
     }//GEN-LAST:event_jButtonLuuActionPerformed
 
     private void jTableKhoHienTaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableKhoHienTaiMouseClicked
-            
+
         int selectedRowIndex = jTableKhoHienTai.getSelectedRow();
         int id_kho = jTableKhoHienTai.getValueAt(selectedRowIndex, 0).hashCode();
         int lo_ton = jTableKhoHienTai.getValueAt(selectedRowIndex, 3).hashCode();
         jTextField_id_kho.setText(id_kho + "");
         jTextField_Lo_ton.setText(lo_ton + "");
         jTextFieldThoiGian.setText(DAO.DateTimeNow.getIntance().DateView);
-        
+
 //        if (evt.getClickCount() == 1 && !evt.isConsumed()) {
 //            evt.consume();
 //            
@@ -725,7 +668,7 @@ public class fKiemKe extends javax.swing.JFrame {
 //        }
         if (evt.getClickCount() == 2 && !evt.isConsumed()) {
             //evt.consume();
-            
+
             JFrame Xem = new fChiTietKiemKe(id_kho);
             Xem.setVisible(true);
             //System.out.print("Nhap dup chuot");
@@ -856,9 +799,7 @@ public class fKiemKe extends javax.swing.JFrame {
     private javax.swing.JButton jButtonNhoMax;
     private javax.swing.JButton jButtonTaiLai;
     private javax.swing.JComboBox<String> jComboBoxLoaiSP;
-    private javax.swing.JComboBox<String> jComboBoxNhanVien2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
