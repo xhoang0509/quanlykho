@@ -250,7 +250,7 @@ public class fCreate_PhieuXuat extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("Phiếu xuất kho siêu thị S.O.S");
+        jLabel10.setText("Phiếu xuất kho nhà hàng 5 sao");
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));

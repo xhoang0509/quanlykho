@@ -440,7 +440,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Phi&#x1ebf;u tr&#x1ea3; h&#xe0;ng si&#xea;u th&#x1ecb; S.O.S"/>
+                <Property name="text" type="java.lang.String" value="Phi&#x1ebf;u tr&#x1ea3; h&#xe0;ng kho nh&#xe0; h&#xe0;ng 5 sao"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel12">
