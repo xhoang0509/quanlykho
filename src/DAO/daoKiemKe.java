@@ -14,7 +14,7 @@ import java.lang.*;
 
 /**
  *
- * @author Dinh Tien
+ * @author Viet Thang
  */
 public class daoKiemKe {
 
@@ -30,7 +30,7 @@ public class daoKiemKe {
     public daoKiemKe() {
     }
 
-    //Lấy danh sách thông tin từ bảng sản phẩm
+    // Lấy danh sách thông tin từ bảng sản phẩm
     public ArrayList<SanPham> getListSanPham() {
         ArrayList<SanPham> result = new ArrayList<>();
         String query = "select * from San_pham";
@@ -39,7 +39,8 @@ public class daoKiemKe {
             DataProvider.getIntance().open();
             ResultSet rs = DataProvider.getIntance().excuteQuery(query, arr);
             while (rs.next()) {
-                result.add(new SanPham(rs.getInt("id_sp"), rs.getString("ten_sp"), rs.getBytes("hinh_anh"), rs.getInt("id_exist"), rs.getInt("id_loai_sp")));
+                result.add(new SanPham(rs.getInt("id_sp"), rs.getString("ten_sp"), rs.getBytes("hinh_anh"),
+                        rs.getInt("id_exist"), rs.getInt("id_loai_sp")));
             }
 
             DataProvider.getIntance().close();
@@ -49,8 +50,7 @@ public class daoKiemKe {
 
         return result;
     }
-    
-    
+
     // Lấy danh sách thông tin kiểm kê từ nhiều bảng khác nhau
     public ArrayList<ThongTinKiemKe> getListThongTinKiemKe(int id_lo_sp) {
         ArrayList<ThongTinKiemKe> result = new ArrayList<>();
@@ -79,5 +79,5 @@ public class daoKiemKe {
 
         return result;
     }
-    
+
 }

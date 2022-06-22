@@ -4,10 +4,12 @@
  * and open the template in the editor.
  */
 package DTO;
+
 import java.lang.*;
+
 /**
  *
- * @author Dinh Tien
+ * @author Viet Thang
  */
 public class NguonCungCap {
     public int id_nguon_cc;
@@ -18,16 +20,16 @@ public class NguonCungCap {
     public String email;
     public int id_exist;
     public byte[] hinh_anh;
-    
-    public NguonCungCap(int id,String ten,String tendd,String sdt,String diachi,String email,int exist,byte[] hinhanh)
-    {
-        this.id_nguon_cc=id;
-        this.ten_nha_cc=ten;
-        this.ten_dai_dien=tendd;
-        this.sdt=sdt;
-        this.dia_chi=diachi;
-        this.email=email;
-        this.id_exist=exist;
-        this.hinh_anh=hinhanh;
+
+    public NguonCungCap(int id, String ten, String tendd, String sdt, String diachi, String email, int exist,
+            byte[] hinhanh) {
+        this.id_nguon_cc = id;
+        this.ten_nha_cc = ten;
+        this.ten_dai_dien = tendd;
+        this.sdt = sdt;
+        this.dia_chi = diachi;
+        this.email = email;
+        this.id_exist = exist;
+        this.hinh_anh = hinhanh;
     }
 }

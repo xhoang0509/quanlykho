@@ -4,18 +4,21 @@
  * and open the template in the editor.
  */
 package DTO;
+
 import java.lang.*;
+
 /**
  *
- * @author Dinh Tien
+ * @author Viet Thang
  */
 public class XuatKho {
     public int id_xuat_kho;
     public int sl_sp;
     public String thoi_gian_xuat;
-    public int id_lo;   
+    public int id_lo;
     public int id_nv;
-    //Hàm khởi tạo
+
+    // Hàm khởi tạo
     public XuatKho(int id_ton, int id_lo, String ngay, int sl_sp, int id_khu_vuc) {
         this.id_xuat_kho = id_ton;
         this.sl_sp = id_lo;

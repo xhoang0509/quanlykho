@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Dinh Tien
+ * @author Viet Thang
  */
 public class busXuatKho {
 
@@ -47,21 +47,27 @@ public class busXuatKho {
     public ArrayList<XuatKho> getListXuatKhoTheoThoiGian(String thoi_gian) {
         return daoXuatKho.getInstance().getListXuatKhoTheoThoiGian(thoi_gian);
     }
+
     public boolean KiemTraXuatKho(String id_lo, String slton, String slxuat, String ngay, int id_nv) {
         return daoXuatKho.getInstance().KiemTraXuatKho(id_lo, slton, slxuat, ngay, id_nv);
     }
+
     public ArrayList<ThongTinXuat> FindListXuatKho(ArrayList<ThongTinXuat> DuLieuMau, String ValToSearch) {
         return daoXuatKho.getInstance().FindListXuatKho(DuLieuMau, ValToSearch);
     }
+
     public XuatKho getXuatKho(int id_px) {
         return daoXuatKho.getInstance().getXuatKho(id_px);
     }
-    // kiểm tra nếu phù hợp với số lượng tồn thì xuất, không thì cho qua hổ trợ cho DataSeeder
+
+    // kiểm tra nếu phù hợp với số lượng tồn thì xuất, không thì cho qua hổ trợ cho
+    // DataSeeder
     public void RunXuatKho(int id_lo, int sl_xuat, String thoi_gian, int id_nv) {
-        daoXuatKho.getInstance().RunXuatKho(id_lo,sl_xuat,thoi_gian,id_nv);
+        daoXuatKho.getInstance().RunXuatKho(id_lo, sl_xuat, thoi_gian, id_nv);
     }
+
     public ArrayList<ThongTinXuat> get20XuatKho(ArrayList<ThongTinXuat> arr, long Trang) {
-         return daoXuatKho.getInstance().get20XuatKho(arr, Trang);
+        return daoXuatKho.getInstance().get20XuatKho(arr, Trang);
     }
-    
+
 }

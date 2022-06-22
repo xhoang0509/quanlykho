@@ -4,11 +4,12 @@
  * and open the template in the editor.
  */
 package GROUP;
+
 import java.lang.*;
 
 /**
  *
- * @author Dinh Tien
+ * @author Viet Thang
  */
 public class ThongTinTon {
 
@@ -24,10 +25,10 @@ public class ThongTinTon {
 
     public ThongTinTon(int id_lo_sp, int id_ton, String ten_sp, String hsd, int sl_sp, String ngay) {
         this.ten_sp = ten_sp;
-        this.id_ton=id_ton;
+        this.id_ton = id_ton;
         this.id_lo_sp = id_lo_sp;
         this.hsd = hsd;
-        this.sl_sp=sl_sp;
-        this.ngay=ngay;
+        this.sl_sp = sl_sp;
+        this.ngay = ngay;
     }
 }

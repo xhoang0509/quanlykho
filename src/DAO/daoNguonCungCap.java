@@ -34,7 +34,7 @@ import java.lang.*;
 
 /**
  *
- * @author Dinh Tien
+ * @author Viet Thang
  */
 public class daoNguonCungCap {
 
@@ -50,7 +50,7 @@ public class daoNguonCungCap {
     public daoNguonCungCap() {
     }
 
-    //Lấy danh sách thông tin từ bảng nguồn cung cấp
+    // Lấy danh sách thông tin từ bảng nguồn cung cấp
     public ArrayList<NguonCungCap> getListNguonCungCap() {
         ArrayList<NguonCungCap> result = new ArrayList<>();
         String query = "select *from Nguon_cc where id_exist=1";
@@ -77,11 +77,12 @@ public class daoNguonCungCap {
         return result;
     }
 
-    //Tìm kiếm trong bảng nguồn cung cấp (cũ)
+    // Tìm kiếm trong bảng nguồn cung cấp (cũ)
     public ArrayList<NguonCungCap> FindListNguonCungCap(String ValToSearch) {
         ArrayList<NguonCungCap> NguonCungCapList = new ArrayList<>();
         ArrayList<Object> arr = new ArrayList<>();
-        String searchQuery = "SELECT * FROM `Nguon_cc` WHERE CONCAT(`id_nguon_cc`, `ten_nha_cc`,`ten_dai_dien`,`sdt`,`dia_chi`) LIKE '%" + ValToSearch + "%'";
+        String searchQuery = "SELECT * FROM `Nguon_cc` WHERE CONCAT(`id_nguon_cc`, `ten_nha_cc`,`ten_dai_dien`,`sdt`,`dia_chi`) LIKE '%"
+                + ValToSearch + "%'";
         try {
             DataProvider.getIntance().open();
             ResultSet rs = DataProvider.getIntance().excuteQuery(searchQuery, arr);
@@ -96,8 +97,7 @@ public class daoNguonCungCap {
                         rs.getString("dia_chi"),
                         rs.getString("email"),
                         rs.getInt("id_exist"),
-                        rs.getBytes("hinh_anh")
-                );
+                        rs.getBytes("hinh_anh"));
                 NguonCungCapList.add(Nguon);
             }
 
@@ -108,8 +108,9 @@ public class daoNguonCungCap {
         return NguonCungCapList;
     }
 
-    //Thêm nguồn cung cấp mới
-    public boolean insertNguonCungCap(String tennhacc, String tendaidien, String sdt, String diachi, String email, String hinh_anh, int id_nv) {
+    // Thêm nguồn cung cấp mới
+    public boolean insertNguonCungCap(String tennhacc, String tendaidien, String sdt, String diachi, String email,
+            String hinh_anh, int id_nv) {
         if ("".equals(hinh_anh)) {
             JOptionPane.showMessageDialog(null,
                     "Chưa chọn hình ảnh",
@@ -126,7 +127,8 @@ public class daoNguonCungCap {
         }
         try {
             DAO.DataProvider.getIntance().open();
-            PreparedStatement ps = DAO.DataProvider.getIntance().getconn().prepareStatement("INSERT INTO `nguon_cc`(`ten_nha_cc`, `ten_dai_dien`, `sdt`, `dia_chi`, `email`, `id_exist`, `hinh_anh`) VALUES (?,?,?,?,?,1,?)");
+            PreparedStatement ps = DAO.DataProvider.getIntance().getconn().prepareStatement(
+                    "INSERT INTO `nguon_cc`(`ten_nha_cc`, `ten_dai_dien`, `sdt`, `dia_chi`, `email`, `id_exist`, `hinh_anh`) VALUES (?,?,?,?,?,1,?)");
             InputStream is = new FileInputStream(new File(hinh_anh));
             ps.setString(1, tennhacc);
             ps.setString(2, tendaidien);
@@ -141,14 +143,17 @@ public class daoNguonCungCap {
                     "Thông báo",
                     JOptionPane.INFORMATION_MESSAGE);
 
-            DAO.daoThongBao.getInstance().insertThongBao("[Nhà cung cấp] Nhân viên " + DAO.daoTaiKhoan.getInstance().getNhanVien(id_nv).ten_nv + " đã thêm nhà cung cấp mới vào lúc " + DAO.DateTimeNow.getIntance().Now, DAO.DateTimeNow.getIntance().Now, 6);
+            DAO.daoThongBao.getInstance().insertThongBao(
+                    "[Nhà cung cấp] Nhân viên " + DAO.daoTaiKhoan.getInstance().getNhanVien(id_nv).ten_nv
+                            + " đã thêm nhà cung cấp mới vào lúc " + DAO.DateTimeNow.getIntance().Now,
+                    DAO.DateTimeNow.getIntance().Now, 6);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         return true;
     }
 
-    //Lấy ra 1 nguồn cung cấp bằng id
+    // Lấy ra 1 nguồn cung cấp bằng id
     public NguonCungCap getNguonCungCap(int id_ncc) {
         String query = "SELECT * FROM `Nguon_cc` WHERE id_nguon_cc='" + id_ncc + "'";
         ArrayList<Object> arr = new ArrayList<>();
@@ -165,8 +170,7 @@ public class daoNguonCungCap {
                         rs.getString("dia_chi"),
                         rs.getString("email"),
                         rs.getInt("id_exist"),
-                        rs.getBytes("hinh_anh")
-                );
+                        rs.getBytes("hinh_anh"));
 
             } else {
                 return null;
@@ -179,7 +183,7 @@ public class daoNguonCungCap {
         return ncc;
     }
 
-    //Update thông tin nguồn cung cấp
+    // Update thông tin nguồn cung cấp
     public boolean UpdateNguonCungCap(int IdNguonCungCap,
             String TenNhaCungCap,
             String TenDaiDien,
@@ -187,15 +191,18 @@ public class daoNguonCungCap {
             String DiaChi,
             String Email,
             int IdNhanVien) {
-        if ("".equals(TenNhaCungCap) || "".equals(TenDaiDien) || "".equals(Sdt) || "".equals(DiaChi) || "".equals(Email)) {
+        if ("".equals(TenNhaCungCap) || "".equals(TenDaiDien) || "".equals(Sdt) || "".equals(DiaChi)
+                || "".equals(Email)) {
             JOptionPane.showMessageDialog(null,
                     "Chưa điền đầy đủ thông tin",
                     "Lỗi",
                     JOptionPane.ERROR_MESSAGE);
             return false;
         }
-        String query = "UPDATE `Nguon_cc` SET `ten_nha_cc`='" + TenNhaCungCap + "',`ten_dai_dien`='" + TenDaiDien + "',`sdt`='" + Sdt + "',`dia_chi`='" + DiaChi + "',`email`='" + Email + "' WHERE `id_nguon_cc`=" + IdNguonCungCap;
-        //System.out.println(query);
+        String query = "UPDATE `Nguon_cc` SET `ten_nha_cc`='" + TenNhaCungCap + "',`ten_dai_dien`='" + TenDaiDien
+                + "',`sdt`='" + Sdt + "',`dia_chi`='" + DiaChi + "',`email`='" + Email + "' WHERE `id_nguon_cc`="
+                + IdNguonCungCap;
+        // System.out.println(query);
         ArrayList<Object> arr = new ArrayList<>();
         DataProvider.getIntance().open();
         DataProvider.getIntance().excuteUpdate(query, arr);
@@ -204,13 +211,16 @@ public class daoNguonCungCap {
                 "Sửa thông tin nhà cung cấp thành công",
                 "Thông báo",
                 JOptionPane.INFORMATION_MESSAGE);
-        DAO.daoThongBao.getInstance().insertThongBao("[Nhà cung cấp] Nhân viên " + DAO.daoTaiKhoan.getInstance().getNhanVien(IdNhanVien).ten_nv + " đã sửa thông tin của nhà cung cấp vào lúc " + DAO.DateTimeNow.getIntance().Now, DAO.DateTimeNow.getIntance().Now, 6);
+        DAO.daoThongBao.getInstance().insertThongBao(
+                "[Nhà cung cấp] Nhân viên " + DAO.daoTaiKhoan.getInstance().getNhanVien(IdNhanVien).ten_nv
+                        + " đã sửa thông tin của nhà cung cấp vào lúc " + DAO.DateTimeNow.getIntance().Now,
+                DAO.DateTimeNow.getIntance().Now, 6);
         return true;
     }
-    public boolean HuyNguonCungCap(int id_ncc, int id_nv)
-    {
+
+    public boolean HuyNguonCungCap(int id_ncc, int id_nv) {
         String query = "UPDATE `Nguon_cc` SET `id_exist`=0 WHERE `id_nguon_cc`=" + id_ncc;
-        //System.out.println(query);
+        // System.out.println(query);
         ArrayList<Object> arr = new ArrayList<>();
         DataProvider.getIntance().open();
         DataProvider.getIntance().excuteUpdate(query, arr);
@@ -219,11 +229,14 @@ public class daoNguonCungCap {
                 "Xóa thông tin nhà cung cấp thành công",
                 "Thông báo",
                 JOptionPane.INFORMATION_MESSAGE);
-        DAO.daoThongBao.getInstance().insertThongBao("[Nhà cung cấp] Nhân viên " + DAO.daoTaiKhoan.getInstance().getNhanVien(id_nv).ten_nv + " đã xóa thông tin của nhà cung cấp vào lúc " + DAO.DateTimeNow.getIntance().Now, DAO.DateTimeNow.getIntance().Now, 6);
+        DAO.daoThongBao.getInstance().insertThongBao(
+                "[Nhà cung cấp] Nhân viên " + DAO.daoTaiKhoan.getInstance().getNhanVien(id_nv).ten_nv
+                        + " đã xóa thông tin của nhà cung cấp vào lúc " + DAO.DateTimeNow.getIntance().Now,
+                DAO.DateTimeNow.getIntance().Now, 6);
         return true;
     }
 
-    //Tìm số lần nhập kho của 1 nhà cung cấp
+    // Tìm số lần nhập kho của 1 nhà cung cấp
     public int GetSoLanNhapKho(int id_ncc) {
         int SoLanNhapKho = 0;
         String query = "SELECT * FROM `Chi_tiet_phieu_nhap` WHERE id_nguon_cc='" + id_ncc + "'";
@@ -244,12 +257,13 @@ public class daoNguonCungCap {
 
     }
 
-    //Tìm số lần xuất kho của một nhà cung cấp
+    // Tìm số lần xuất kho của một nhà cung cấp
     public int GetSoLanXuatKho(int id_ncc) {
         int SoLanXuatKho = 0;
         String query = "SELECT `phieu_xuat_kho`.`id_xuat_kho`, `lo_san_pham`.`id_phieu_nhap`,`chi_tiet_phieu_nhap`.`id_nguon_cc` "
                 + "FROM `phieu_xuat_kho`,`lo_san_pham`,`chi_tiet_phieu_nhap` "
-                + "WHERE `phieu_xuat_kho`.`id_lo_sp`=`lo_san_pham`.`id_lo_sp` and `chi_tiet_phieu_nhap`.`id_phieu_nhap`=`lo_san_pham`.`id_phieu_nhap` and id_nguon_cc='" + id_ncc + "'";
+                + "WHERE `phieu_xuat_kho`.`id_lo_sp`=`lo_san_pham`.`id_lo_sp` and `chi_tiet_phieu_nhap`.`id_phieu_nhap`=`lo_san_pham`.`id_phieu_nhap` and id_nguon_cc='"
+                + id_ncc + "'";
         ArrayList<Object> arr = new ArrayList<>();
 
         try {
@@ -267,12 +281,13 @@ public class daoNguonCungCap {
         return SoLanXuatKho;
 
     }
-    public int GetSoLanTraKho(int id_ncc)
-    {
+
+    public int GetSoLanTraKho(int id_ncc) {
         int SoLanTraKho = 0;
         String query = "SELECT `phieu_tra_kho`.`id_phieu_tra_kho`, `lo_san_pham`.`id_phieu_nhap`,`chi_tiet_phieu_nhap`.`id_nguon_cc` "
                 + "FROM `phieu_tra_kho`,`lo_san_pham`,`chi_tiet_phieu_nhap` "
-                + "WHERE `phieu_tra_kho`.`id_lo_sp`=`lo_san_pham`.`id_lo_sp` and `chi_tiet_phieu_nhap`.`id_phieu_nhap`=`lo_san_pham`.`id_phieu_nhap` and id_nguon_cc='" + id_ncc + "'";
+                + "WHERE `phieu_tra_kho`.`id_lo_sp`=`lo_san_pham`.`id_lo_sp` and `chi_tiet_phieu_nhap`.`id_phieu_nhap`=`lo_san_pham`.`id_phieu_nhap` and id_nguon_cc='"
+                + id_ncc + "'";
         ArrayList<Object> arr = new ArrayList<>();
 
         try {
@@ -289,13 +304,14 @@ public class daoNguonCungCap {
 
         return SoLanTraKho;
     }
-    //Tìm số lượng lô nhập kho của một nhà cung cấp
-    public int GetSoLuongTraKho(int id_ncc)
-    {
+
+    // Tìm số lượng lô nhập kho của một nhà cung cấp
+    public int GetSoLuongTraKho(int id_ncc) {
         int SoLuongXuatKho = 0;
         String query = "SELECT * "
                 + "FROM `phieu_tra_kho`,`lo_san_pham`,`chi_tiet_phieu_nhap` "
-                + "WHERE `phieu_tra_kho`.`id_lo_sp`=`lo_san_pham`.`id_lo_sp` and `chi_tiet_phieu_nhap`.`id_phieu_nhap`=`lo_san_pham`.`id_phieu_nhap` and id_nguon_cc='" + id_ncc + "'";
+                + "WHERE `phieu_tra_kho`.`id_lo_sp`=`lo_san_pham`.`id_lo_sp` and `chi_tiet_phieu_nhap`.`id_phieu_nhap`=`lo_san_pham`.`id_phieu_nhap` and id_nguon_cc='"
+                + id_ncc + "'";
         ArrayList<Object> arr = new ArrayList<>();
 
         try {
@@ -312,6 +328,7 @@ public class daoNguonCungCap {
 
         return SoLuongXuatKho;
     }
+
     public int GetSoLuongNhapKho(int id_ncc) {
         int SoLuongNhapKho = 0;
         String query = "SELECT * FROM `Chi_tiet_phieu_nhap` WHERE id_nguon_cc='" + id_ncc + "'";
@@ -331,12 +348,13 @@ public class daoNguonCungCap {
         return SoLuongNhapKho;
     }
 
-    //Tìm số lượng lô xuất kho của một nhà cung cấp
+    // Tìm số lượng lô xuất kho của một nhà cung cấp
     public int GetSoLuongXuatKho(int id_ncc) {
         int SoLuongXuatKho = 0;
         String query = "SELECT * "
                 + "FROM `phieu_xuat_kho`,`lo_san_pham`,`chi_tiet_phieu_nhap` "
-                + "WHERE `phieu_xuat_kho`.`id_lo_sp`=`lo_san_pham`.`id_lo_sp` and `chi_tiet_phieu_nhap`.`id_phieu_nhap`=`lo_san_pham`.`id_phieu_nhap` and id_nguon_cc='" + id_ncc + "'";
+                + "WHERE `phieu_xuat_kho`.`id_lo_sp`=`lo_san_pham`.`id_lo_sp` and `chi_tiet_phieu_nhap`.`id_phieu_nhap`=`lo_san_pham`.`id_phieu_nhap` and id_nguon_cc='"
+                + id_ncc + "'";
         ArrayList<Object> arr = new ArrayList<>();
 
         try {
@@ -355,7 +373,7 @@ public class daoNguonCungCap {
 
     }
 
-    //Tìm kiếm trong bảng nguồn cung cấp (mới)
+    // Tìm kiếm trong bảng nguồn cung cấp (mới)
     public ArrayList<NguonCungCap> FindListNguonCungCap(ArrayList<NguonCungCap> DuLieuMau, String ValToSearch) {
         ArrayList<NguonCungCap> result = new ArrayList<>();
         for (int i = 0; i < DuLieuMau.size(); i++) {
@@ -366,11 +384,11 @@ public class daoNguonCungCap {
                     || DuLieuMau.get(i).sdt.contains(ValToSearch)
                     || DuLieuMau.get(i).ten_dai_dien.contains(ValToSearch)
                     || DuLieuMau.get(i).ten_nha_cc.contains(ValToSearch)) {
-                //System.out.println(DuLieuXuatKho.get(i).thoi_gian_xuat);
-                //System.out.println(tensp);
+                // System.out.println(DuLieuXuatKho.get(i).thoi_gian_xuat);
+                // System.out.println(tensp);
                 // System.out.println(loaisp);
                 // System.out.println(sl_sp);
-                //   System.out.println(tennv);
+                // System.out.println(tennv);
 
                 result.add(DuLieuMau.get(i));
             }
@@ -378,7 +396,7 @@ public class daoNguonCungCap {
         return result;
     }
 
-    //Lấy ra danh sách 20 nguồn cung cấp, để làm phân trang
+    // Lấy ra danh sách 20 nguồn cung cấp, để làm phân trang
     public ArrayList<NguonCungCap> get20NguonCungCap(ArrayList<NguonCungCap> arr, long Trang) {
         ArrayList<NguonCungCap> result = new ArrayList<>();
         for (long i = (Trang * 20 - 20); i < (Trang * 20); i++) {

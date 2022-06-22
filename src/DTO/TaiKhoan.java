@@ -4,10 +4,12 @@
  * and open the template in the editor.
  */
 package DTO;
+
 import java.lang.*;
+
 /**
  *
- * @author Dinh Tien
+ * @author Viet Thang
  */
 public class TaiKhoan {
     public int id_tk;
@@ -16,19 +18,18 @@ public class TaiKhoan {
     public int id_exist;
     public int id_nv;
     public int loai;
-    
-    public TaiKhoan(int id,String ten,String mk, int exist,int idnv,int loai)
-    {
-        this.id_exist=exist;
-        this.id_nv=idnv;
-        this.id_tk=id;
-        this.loai=loai;
-        this.mat_khau=mk;
-        this.ten_tai_khoan=ten;
-        
+
+    public TaiKhoan(int id, String ten, String mk, int exist, int idnv, int loai) {
+        this.id_exist = exist;
+        this.id_nv = idnv;
+        this.id_tk = id;
+        this.loai = loai;
+        this.mat_khau = mk;
+        this.ten_tai_khoan = ten;
+
     }
-    public TaiKhoan()
-    {
+
+    public TaiKhoan() {
 
     }
 }

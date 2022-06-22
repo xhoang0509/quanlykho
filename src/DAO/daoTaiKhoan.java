@@ -15,7 +15,7 @@ import java.lang.*;
 
 /**
  *
- * @author Dinh Tien
+ * @author Viet Thang
  */
 public class daoTaiKhoan {
 
@@ -31,7 +31,7 @@ public class daoTaiKhoan {
     public daoTaiKhoan() {
     }
 
-    //Lấy danh sách tài khoản
+    // Lấy danh sách tài khoản
     public ArrayList<TaiKhoan> getListTaiKhoan() {
         ArrayList<TaiKhoan> result = new ArrayList<>();
         String query = "select *from Tai_khoan";
@@ -56,7 +56,7 @@ public class daoTaiKhoan {
         return result;
     }
 
-    //Kiểm tra khi đăng nhập
+    // Kiểm tra khi đăng nhập
     public boolean KiemTraDangNhap(String User, String Pass) {
         ArrayList<Object> arr = new ArrayList<>();
 
@@ -75,10 +75,10 @@ public class daoTaiKhoan {
         return false;
     }
 
-    //Kiểm tra tài khoản khi đổi mật khẩu
+    // Kiểm tra tài khoản khi đổi mật khẩu
     public int KiemTraTaiKhoan(String User, String Pass, String Mkmoi, String MK, int id_nv) {
         TaiKhoan Tk = getTaiKhoan(User, Pass);
-        if (Tk == null) //Kiem tra neu tk bằng null thì retrun 1
+        if (Tk == null) // Kiem tra neu tk bằng null thì retrun 1
         {
             JOptionPane.showMessageDialog(null,
                     "Tên đăng nhập hoặc mật khẩu sai.",
@@ -110,7 +110,8 @@ public class daoTaiKhoan {
                     JOptionPane.ERROR_MESSAGE);
             return 4;
         }
-        String query = "UPDATE `Tai_khoan` SET mat_khau='" + Mkmoi + "'WHERE ten_tai_khoan='" + User + "' and mat_khau='" + Pass + "'";
+        String query = "UPDATE `Tai_khoan` SET mat_khau='" + Mkmoi + "'WHERE ten_tai_khoan='" + User
+                + "' and mat_khau='" + Pass + "'";
         ArrayList<Object> arr = new ArrayList<>();
         DataProvider.getIntance().open();
         DataProvider.getIntance().excuteUpdate(query, arr);
@@ -119,12 +120,15 @@ public class daoTaiKhoan {
                 "Sửa mật khẩu thành công",
                 "Thông báo",
                 JOptionPane.INFORMATION_MESSAGE);
-        DAO.daoThongBao.getInstance().insertThongBao("[Tài khoản] Nhân viên " + DAO.daoTaiKhoan.getInstance().getNhanVien(id_nv).ten_nv + " đã sửa mật khẩu vào lúc " + DAO.DateTimeNow.getIntance().Now, DAO.DateTimeNow.getIntance().Now, 6);
+        DAO.daoThongBao.getInstance().insertThongBao(
+                "[Tài khoản] Nhân viên " + DAO.daoTaiKhoan.getInstance().getNhanVien(id_nv).ten_nv
+                        + " đã sửa mật khẩu vào lúc " + DAO.DateTimeNow.getIntance().Now,
+                DAO.DateTimeNow.getIntance().Now, 6);
 
         return 0;
     }
 
-    //Lấy thông tin tài khoản bằng User và Pass
+    // Lấy thông tin tài khoản bằng User và Pass
     public TaiKhoan getTaiKhoan(String User, String Pass) {
         TaiKhoan result = null;
         String query = "SELECT * FROM `Tai_khoan` WHERE ten_tai_khoan='" + User + "' and mat_khau='" + Pass + "'";
@@ -150,7 +154,7 @@ public class daoTaiKhoan {
         return result;
     }
 
-    //Lấy thông tin tài khoản bằng id nhân viên
+    // Lấy thông tin tài khoản bằng id nhân viên
     public TaiKhoan getTaiKhoan(int id_nhanvien) {
         TaiKhoan result = null;
         String query = "SELECT * FROM `Tai_khoan` WHERE id_tk='" + id_nhanvien + "'";
@@ -176,7 +180,7 @@ public class daoTaiKhoan {
         return result;
     }
 
-    //Lấy thông tin nhân viên bằng id_nv
+    // Lấy thông tin nhân viên bằng id_nv
     public NhanVien getNhanVien(int id_nv) {
         String query = "SELECT * FROM `Nhan_vien` WHERE id_nv='" + id_nv + "'";
         ArrayList<Object> arr = new ArrayList<>();

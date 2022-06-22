@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Dinh Tien
+ * @author Viet Thang
  */
 public class busLoSanPham {
 

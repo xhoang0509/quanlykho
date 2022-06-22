@@ -4,10 +4,12 @@
  * and open the template in the editor.
  */
 package DTO;
+
 import java.lang.*;
+
 /**
  *
- * @author Dinh Tien
+ * @author Viet Thang
  */
 public class Kho {
     public int id_kho;
@@ -21,6 +23,5 @@ public class Kho {
         this.sl_san_pham = sl_sp;
         this.id_khu_vuc = id_khu_vuc;
     }
-    
-}
 
+}

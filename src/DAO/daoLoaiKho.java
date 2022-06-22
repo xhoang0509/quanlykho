@@ -4,15 +4,17 @@
  * and open the template in the editor.
  */
 package DAO;
+
 import DTO.*;
 import DAO.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+
 /**
  *
- * @author Dinh Tien
+ * @author Viet Thang
  */
 public class daoLoaiKho {
     private static daoLoaiKho instance;
@@ -26,6 +28,7 @@ public class daoLoaiKho {
 
     public daoLoaiKho() {
     }
+
     public ArrayList<LoaiKho> getListLoaiKho() {
         ArrayList<LoaiKho> result = new ArrayList<>();
         String query = "select * from loai_kho where `id_exist`=1";
@@ -35,56 +38,58 @@ public class daoLoaiKho {
             ResultSet rs = DataProvider.getIntance().excuteQuery(query, arr);
             while (rs.next()) {
                 result.add(new LoaiKho(rs.getInt("id_loai_kho"),
-                rs.getString("ten_loai_kho"),
-                rs.getInt("id_exist")));
+                        rs.getString("ten_loai_kho"),
+                        rs.getInt("id_exist")));
             }
 
             DataProvider.getIntance().close();
         } catch (SQLException ex) {
-            DataProvider.getIntance().displayError(ex); 
+            DataProvider.getIntance().displayError(ex);
         }
 
         return result;
     }
+
     public LoaiKho getLoaiKho(int id_loai_kho) {
         LoaiKho result = new LoaiKho();
-        String query = "select * from loai_kho where `id_exist`=1 and `id_loai_kho` ="+ id_loai_kho;
+        String query = "select * from loai_kho where `id_exist`=1 and `id_loai_kho` =" + id_loai_kho;
         ArrayList<Object> arr = new ArrayList<>();
         try {
             DataProvider.getIntance().open();
             ResultSet rs = DataProvider.getIntance().excuteQuery(query, arr);
             if (rs.next()) {
-                result=new LoaiKho(rs.getInt("id_loai_kho"),
-                rs.getString("ten_loai_kho"),
-                rs.getInt("id_exist"));
+                result = new LoaiKho(rs.getInt("id_loai_kho"),
+                        rs.getString("ten_loai_kho"),
+                        rs.getInt("id_exist"));
             }
 
             DataProvider.getIntance().close();
         } catch (SQLException ex) {
-            DataProvider.getIntance().displayError(ex); 
+            DataProvider.getIntance().displayError(ex);
         }
 
         return result;
     }
+
     public LoaiKho getLoaiKho(String ten_loai_kho) {
         LoaiKho result = new LoaiKho();
-        String query = "select * from loai_kho where `id_exist`=1 and `ten_loai_kho` ='"+ ten_loai_kho+"'";
+        String query = "select * from loai_kho where `id_exist`=1 and `ten_loai_kho` ='" + ten_loai_kho + "'";
         ArrayList<Object> arr = new ArrayList<>();
         try {
             DataProvider.getIntance().open();
             ResultSet rs = DataProvider.getIntance().excuteQuery(query, arr);
             if (rs.next()) {
-                result=new LoaiKho(rs.getInt("id_loai_kho"),
-                rs.getString("ten_loai_kho"),
-                rs.getInt("id_exist"));
+                result = new LoaiKho(rs.getInt("id_loai_kho"),
+                        rs.getString("ten_loai_kho"),
+                        rs.getInt("id_exist"));
             }
 
             DataProvider.getIntance().close();
         } catch (SQLException ex) {
-            DataProvider.getIntance().displayError(ex); 
+            DataProvider.getIntance().displayError(ex);
         }
 
         return result;
     }
-    
+
 }
