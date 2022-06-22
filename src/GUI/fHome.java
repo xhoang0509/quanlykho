@@ -33,6 +33,7 @@ public class fHome extends javax.swing.JFrame {
     JPanelBaoCao PanelBaoCaoMau;
     public int id_nv;
     public ScheduledThreadPoolExecutor exec = new ScheduledThreadPoolExecutor(1);
+    public fThongBaoChuan ThongBao;
     public Thread running;
     public int TocDoLoading = 10;
     public Thread loading = new Thread() {
@@ -71,6 +72,8 @@ public class fHome extends javax.swing.JFrame {
         //this.PanelBaoCaoMau = DataBaoCao;
         initComponents();
         setIcon();
+        ThongBao = new fThongBaoChuan(id_nv);
+        ThongBao.setVisible(false);
         exec.scheduleAtFixedRate(new Runnable() {
             public void run() {
                 //System.out.println("5 giây đã trôi qua :))");
