@@ -3,6 +3,7 @@ package GUI;
 import BUS.busNhapKho;
 import DAO.NhapKho;
 import DAO.daoXuatKho;
+import DTO.NguonCungCap;
 import DTO.NhanVien;
 import DTO.TaiKhoan;
 import GROUP.ThongTinNhap;
@@ -10,12 +11,22 @@ import DTO.XuatKho;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.lang.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -35,7 +46,7 @@ public class fDanhSach_NhapHang extends javax.swing.JFrame {
     public ArrayList<ThongTinNhap> DuLieuMau;
     public ArrayList<ThongTinNhap> DanhSachXuatKho;
     public long count, SoTrang, Trang = 1;
-
+    
     public fDanhSach_NhapHang(int id_nv) {
         initComponents();
         setIcon();
@@ -74,6 +85,7 @@ public class fDanhSach_NhapHang extends javax.swing.JFrame {
         jLabelKetQua = new javax.swing.JLabel();
         jButtonSua = new javax.swing.JButton();
         jButtonHuy = new javax.swing.JButton();
+        jButtonExcel = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jButtonNhoMax = new javax.swing.JButton();
         jButtonNho = new javax.swing.JButton();
@@ -213,6 +225,14 @@ public class fDanhSach_NhapHang extends javax.swing.JFrame {
             }
         });
 
+        jButtonExcel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonExcel.setText("Excel");
+        jButtonExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -228,6 +248,8 @@ public class fDanhSach_NhapHang extends javax.swing.JFrame {
                         .addComponent(jButtonSua)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonHuy)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonExcel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTextFieldTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -248,7 +270,8 @@ public class fDanhSach_NhapHang extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButtonSua)
-                        .addComponent(jButtonHuy))
+                        .addComponent(jButtonHuy)
+                        .addComponent(jButtonExcel))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButtonTaoMoi)
                         .addComponent(jTextFieldTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -526,6 +549,64 @@ public class fDanhSach_NhapHang extends javax.swing.JFrame {
         build();
     }//GEN-LAST:event_jButtonHuyActionPerformed
 
+    private void jButtonExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcelActionPerformed
+        // TODO add your handling code here:
+        HSSFWorkbook workbook = new HSSFWorkbook();
+        HSSFSheet sheet = workbook.createSheet("Thông Tin Phiếu Nhập");
+        int rownum = 0;
+        Cell cell;
+        Row row;
+
+        row = sheet.createRow(rownum);
+        
+        cell = row.createCell(0);
+        cell.setCellValue("Thời gian");
+
+        cell = row.createCell(1);
+        cell.setCellValue("Giá lô");
+
+        cell = row.createCell(2);
+        cell.setCellValue("Giá sản phẩm");
+
+        cell = row.createCell(3);
+        cell.setCellValue("Nhân viên phụ trách");
+        
+
+        for (int i = 0; i < DuLieuMau.size(); i++) {
+            rownum++;
+            row = sheet.createRow(rownum);
+            //
+            cell = row.createCell(0);
+            cell.setCellValue(DuLieuMau.get(i).thoi_gian);
+            //
+            cell = row.createCell(1);
+            cell.setCellValue(DuLieuMau.get(i).so_tien_lo);
+            //
+            cell = row.createCell(2);
+            cell.setCellValue(DuLieuMau.get(i).so_tien_sp);
+            //
+            cell = row.createCell(3);
+            cell.setCellValue(DuLieuMau.get(i).ten_nv);
+        }
+        File file = new File("C:/demo/danhsach_nhaphang.xls");
+        file.getParentFile().mkdirs();
+
+        FileOutputStream outFile;
+        try {
+            outFile = new FileOutputStream(file);
+            workbook.write(outFile);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(fNhacungcap.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(fNhacungcap.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        JOptionPane.showMessageDialog(rootPane,
+                "Đã lưu file Excel danhsach_nhaphang trong C:/demo.",
+                "Thông báo",
+                JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jButtonExcelActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -602,6 +683,7 @@ public class fDanhSach_NhapHang extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonExcel;
     private javax.swing.JButton jButtonHuy;
     private javax.swing.JButton jButtonLamMoi;
     private javax.swing.JButton jButtonLon;

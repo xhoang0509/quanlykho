@@ -16,12 +16,22 @@ import GROUP.ThongTinXuat;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.lang.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 
 /**
  *
@@ -77,6 +87,7 @@ public class fXuat_Kho extends javax.swing.JFrame {
         jButtonLamMoi = new javax.swing.JButton();
         jLabelKetQua = new javax.swing.JLabel();
         jButtonSua = new javax.swing.JButton();
+        btnExcel = new javax.swing.JButton();
         jComboBoxNhanVien = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jButtonNhoMax = new javax.swing.JButton();
@@ -211,6 +222,14 @@ public class fXuat_Kho extends javax.swing.JFrame {
             }
         });
 
+        btnExcel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnExcel.setText("Excel");
+        btnExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -224,6 +243,8 @@ public class fXuat_Kho extends javax.swing.JFrame {
                         .addComponent(jButtonTaoMoi)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonSua)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnExcel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTextFieldTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -242,7 +263,9 @@ public class fXuat_Kho extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonSua)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonSua)
+                        .addComponent(btnExcel))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButtonTaoMoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTextFieldTimKiem)
@@ -489,6 +512,73 @@ public class fXuat_Kho extends javax.swing.JFrame {
         Xem.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonSuaActionPerformed
+
+    private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
+        // TODO add your handling code here:
+        HSSFWorkbook workbook = new HSSFWorkbook();
+        HSSFSheet sheet = workbook.createSheet("Thông Tin Phiếu Nhập");
+        int rownum = 0;
+        Cell cell;
+        Row row;
+
+        row = sheet.createRow(rownum);
+        
+        cell = row.createCell(0);
+        cell.setCellValue("ID xuất");
+
+        cell = row.createCell(1);
+        cell.setCellValue("Thời gian xuất");
+
+        cell = row.createCell(2);
+        cell.setCellValue("Tên sản phẩm");
+
+        cell = row.createCell(3);
+        cell.setCellValue("Loại sản phẩm");
+        
+        cell = row.createCell(4);
+        cell.setCellValue("SL Lô");
+        
+        cell = row.createCell(5);
+        cell.setCellValue("Nhân viên phụ trách");
+        
+
+        for (int i = 0; i < DuLieuMau.size(); i++) {
+            rownum++;
+            row = sheet.createRow(rownum);
+            //
+            cell = row.createCell(0);
+            cell.setCellValue(DuLieuMau.get(i).id_xuat_kho);
+            //
+            cell = row.createCell(1);
+            cell.setCellValue(DuLieuMau.get(i).thoi_gian_xuat);
+            //
+            cell = row.createCell(2);
+            cell.setCellValue(DuLieuMau.get(i).ten_san_pham);
+            //
+            cell = row.createCell(3);
+            cell.setCellValue(DuLieuMau.get(i).loai_san_pham);
+            
+            cell = row.createCell(4);
+            cell.setCellValue(DuLieuMau.get(i).ten_nv);
+        }
+        File file = new File("C:/demo/xuat_kho.xls");
+        file.getParentFile().mkdirs();
+
+        FileOutputStream outFile;
+        try {
+            outFile = new FileOutputStream(file);
+            workbook.write(outFile);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(fNhacungcap.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(fNhacungcap.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        JOptionPane.showMessageDialog(rootPane,
+                "Đã lưu file Excel xuat_kho trong C:/demo.",
+                "Thông báo",
+                JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnExcelActionPerformed
     public void build() {
         DuLieuMau = BUS.busXuatKho.getInstance().getListThongTinXuatKho();
         DanhSachXuatKho = DuLieuMau;
@@ -610,6 +700,7 @@ public class fXuat_Kho extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnExcel;
     private javax.swing.JButton jButtonLamMoi;
     private javax.swing.JButton jButtonLon;
     private javax.swing.JButton jButtonLonMax;

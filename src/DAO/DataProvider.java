@@ -24,7 +24,7 @@ import java.lang.*;
  */
 public class DataProvider {
 
-    private static String url = "jdbc:mysql://localhost:3306/quanlykhosieuthi?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false";
+    private static String url = "jdbc:mysql://localhost:3306/quanlykho?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false";
     private static String user = "root";
     private static String pass = "";
     
