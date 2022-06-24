@@ -83,8 +83,6 @@ public class fDanhSach_NhapHang extends javax.swing.JFrame {
         jButtonTaoMoi = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabelKetQua = new javax.swing.JLabel();
-        jButtonSua = new javax.swing.JButton();
-        jButtonHuy = new javax.swing.JButton();
         jButtonExcel = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jButtonNhoMax = new javax.swing.JButton();
@@ -203,28 +201,6 @@ public class fDanhSach_NhapHang extends javax.swing.JFrame {
         jLabelKetQua.setForeground(new java.awt.Color(255, 255, 255));
         jLabelKetQua.setText("Có tổng cộng 000 kết quả");
 
-        jButtonSua.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonSua.setText("Sửa");
-        ImageIcon imgSua = new ImageIcon(getClass().getResource("/icon/icons8-maintenance-48.png"));
-        ImageIcon ImgSua = new ImageIcon(imgSua.getImage().getScaledInstance(19, 19, Image.SCALE_SMOOTH));
-        jButtonSua.setIcon(ImgSua);
-        jButtonSua.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSuaActionPerformed(evt);
-            }
-        });
-
-        jButtonHuy.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonHuy.setText("Hủy");
-        ImageIcon imgHuy = new ImageIcon(getClass().getResource("/icon/icons8-waste-48.png"));
-        ImageIcon ImgHuy = new ImageIcon(imgHuy.getImage().getScaledInstance(19, 19, Image.SCALE_SMOOTH));
-        jButtonHuy.setIcon(ImgHuy);
-        jButtonHuy.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonHuyActionPerformed(evt);
-            }
-        });
-
         jButtonExcel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonExcel.setText("Excel");
         jButtonExcel.addActionListener(new java.awt.event.ActionListener() {
@@ -244,10 +220,6 @@ public class fDanhSach_NhapHang extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jButtonTaoMoi)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonSua)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonHuy)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonExcel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -267,16 +239,12 @@ public class fDanhSach_NhapHang extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addGap(28, 28, 28)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonSua)
-                        .addComponent(jButtonHuy)
-                        .addComponent(jButtonExcel))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonTaoMoi)
-                        .addComponent(jTextFieldTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonLamMoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonTaoMoi)
+                    .addComponent(jTextFieldTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonLamMoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonExcel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelKetQua)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -528,27 +496,6 @@ public class fDanhSach_NhapHang extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldTimKiemKeyPressed
 
-    private void jButtonSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSuaActionPerformed
-        int selectedRowIndex = jTableNhapKho.getSelectedRow();
-        int id = jTableNhapKho.getValueAt(selectedRowIndex, 0).hashCode();
-        JFrame Xem = new fCreateKhuVuc(id_nv, true, id);
-        Xem.setVisible(true);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonSuaActionPerformed
-
-    private void jButtonHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHuyActionPerformed
-        int selectedRowIndex = jTableNhapKho.getSelectedRow();
-        int id = jTableNhapKho.getValueAt(selectedRowIndex, 0).hashCode();
-        System.out.println(id);
-//        JFrame ThongBao = new fThongBaoHuy("PhieuNhap", id, id_nv);
-//        ThongBao.setVisible(true);
-        // TODO add your handling code here:
-        invalidate();
-        validate();
-        repaint();
-        build();
-    }//GEN-LAST:event_jButtonHuyActionPerformed
-
     private void jButtonExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcelActionPerformed
         // TODO add your handling code here:
         HSSFWorkbook workbook = new HSSFWorkbook();
@@ -684,13 +631,11 @@ public class fDanhSach_NhapHang extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonExcel;
-    private javax.swing.JButton jButtonHuy;
     private javax.swing.JButton jButtonLamMoi;
     private javax.swing.JButton jButtonLon;
     private javax.swing.JButton jButtonLonMax;
     private javax.swing.JButton jButtonNho;
     private javax.swing.JButton jButtonNhoMax;
-    private javax.swing.JButton jButtonSua;
     private javax.swing.JButton jButtonTaoMoi;
     private javax.swing.JButton jButtonTimKiem;
     private javax.swing.JComboBox<String> jComboBoxNhanVien;

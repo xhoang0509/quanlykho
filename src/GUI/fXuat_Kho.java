@@ -86,7 +86,6 @@ public class fXuat_Kho extends javax.swing.JFrame {
         jButtonTimKiem = new javax.swing.JButton();
         jButtonLamMoi = new javax.swing.JButton();
         jLabelKetQua = new javax.swing.JLabel();
-        jButtonSua = new javax.swing.JButton();
         btnExcel = new javax.swing.JButton();
         jComboBoxNhanVien = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
@@ -211,17 +210,6 @@ public class fXuat_Kho extends javax.swing.JFrame {
         jLabelKetQua.setForeground(new java.awt.Color(255, 255, 255));
         jLabelKetQua.setText("Có tổng cộng 000 kết quả");
 
-        jButtonSua.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonSua.setText("Sửa");
-        ImageIcon imgSua = new ImageIcon(getClass().getResource("/icon/icons8-maintenance-48.png"));
-        ImageIcon ImgSua = new ImageIcon(imgSua.getImage().getScaledInstance(19, 19, Image.SCALE_SMOOTH));
-        jButtonSua.setIcon(ImgSua);
-        jButtonSua.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSuaActionPerformed(evt);
-            }
-        });
-
         btnExcel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnExcel.setText("Excel");
         btnExcel.addActionListener(new java.awt.event.ActionListener() {
@@ -241,9 +229,7 @@ public class fXuat_Kho extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jButtonTaoMoi)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonSua)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(btnExcel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTextFieldTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -262,15 +248,12 @@ public class fXuat_Kho extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addGap(28, 28, 28)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonSua)
-                        .addComponent(btnExcel))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonTaoMoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextFieldTimKiem)
-                        .addComponent(jButtonLamMoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonTaoMoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldTimKiem)
+                    .addComponent(jButtonLamMoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnExcel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelKetQua)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -505,14 +488,6 @@ public class fXuat_Kho extends javax.swing.JFrame {
         jLabelSoTrang.setText(SoTrang + "/" + SoTrang);
     }//GEN-LAST:event_jButtonLonMaxActionPerformed
 
-    private void jButtonSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSuaActionPerformed
-        int selectedRowIndex = jTableXuatKho.getSelectedRow();
-        int id = jTableXuatKho.getValueAt(selectedRowIndex, 0).hashCode();
-        JFrame Xem = new fCreateKhuVuc(id_nv, true, id);
-        Xem.setVisible(true);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonSuaActionPerformed
-
     private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
         // TODO add your handling code here:
         HSSFWorkbook workbook = new HSSFWorkbook();
@@ -706,7 +681,6 @@ public class fXuat_Kho extends javax.swing.JFrame {
     private javax.swing.JButton jButtonLonMax;
     private javax.swing.JButton jButtonNho;
     private javax.swing.JButton jButtonNhoMax;
-    private javax.swing.JButton jButtonSua;
     private javax.swing.JButton jButtonTaoMoi;
     private javax.swing.JButton jButtonTimKiem;
     private javax.swing.JComboBox<String> jComboBoxNhanVien;
